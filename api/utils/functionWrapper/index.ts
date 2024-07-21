@@ -1,0 +1,29 @@
+import type { ICustomAPIGatewayProxyResult } from '@api/types'
+import type { APIGatewayEvent, APIGatewayProxyResult, Context } from 'aws-lambda'
+import middy from '@middy/core'
+import httpErrorHandler from '@middy/http-error-handler'
+
+interface IFunctionWrapperConfig {
+  handler: IHandler
+}
+
+type IHandler = (
+  event: APIGatewayEvent,
+  context: Context,
+) => Promise<ICustomAPIGatewayProxyResult>
+
+type IFunctionWrapperResponse = (event: AWSLambda.APIGatewayEvent, context: AWSLambda.Context) => Promise<APIGatewayProxyResult>
+
+export function functionWrapper({ handler: inputHandler }: IFunctionWrapperConfig): IFunctionWrapperResponse {
+  const handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
+    const result = await inputHandler(event, context)
+    return {
+      ...result,
+      body: JSON.stringify(result.body),
+    }
+  }
+
+  return middy()
+    .use(httpErrorHandler())
+    .handler(handler)
+}

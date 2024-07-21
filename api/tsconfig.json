@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "baseUrl": ".",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "paths": {
+      "@api/*": ["./*"],
+      "@ui/*": ["../ui/src/*"]
+    },
+    "strict": true,
+    "noEmit": true,
+    "preserveConstEnums": true,
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules", "**/*.test.ts"]
+}
