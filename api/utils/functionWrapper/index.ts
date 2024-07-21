@@ -12,7 +12,7 @@ type IHandler = (
   context: Context,
 ) => Promise<ICustomAPIGatewayProxyResult>
 
-type IFunctionWrapperResponse = (event: AWSLambda.APIGatewayEvent, context: AWSLambda.Context) => Promise<APIGatewayProxyResult>
+type IFunctionWrapperResponse = (event?: Partial<APIGatewayEvent>, context?: Partial<Context>) => Promise<APIGatewayProxyResult>
 
 export function functionWrapper({ handler: inputHandler }: IFunctionWrapperConfig): IFunctionWrapperResponse {
   const handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
@@ -23,7 +23,9 @@ export function functionWrapper({ handler: inputHandler }: IFunctionWrapperConfi
     }
   }
 
-  return middy()
+  const handlerWrapper = middy()
     .use(httpErrorHandler())
     .handler(handler)
+
+  return handlerWrapper as (event?: Partial<APIGatewayEvent>, context?: Partial<Context>) => Promise<APIGatewayProxyResult>
 }
