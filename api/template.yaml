@@ -7,6 +7,10 @@ Parameters:
     Type: String
   GoogleApiCx:
     Type: String
+  AlegraApiUsername:
+    Type: String
+  AlegraApiPassword:
+    Type: String
 
 Globals:
   Function:
@@ -15,6 +19,8 @@ Globals:
       Variables:
         GOOGLE_API_KEY: !Ref GoogleApiKey
         GOOGLE_API_CX: !Ref GoogleApiCx
+        ALEGRA_API_USERNAME: !Ref AlegraApiUsername
+        ALEGRA_API_PASSWORD: !Ref AlegraApiPassword
 
 Resources:
   QueryImagesFunction:
@@ -26,12 +32,35 @@ Resources:
       Architectures:
         - x86_64
       Events:
-        HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+        QueryImages:
+          Type: Api
           Properties:
             Path: /query-images
             Method: get
-    Metadata: # Manage esbuild properties
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2020
+        Sourcemap: true
+        EntryPoints:
+          - app.ts
+
+  GetGameSellersFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: modules/Sellers/functions/getGameSellers/
+      Handler: app.lambdaHandler
+      Runtime: nodejs20.x
+      Architectures:
+        - x86_64
+      Events:
+        QueryImages:
+          Type: Api
+          Properties:
+            Path: /get-game-sellers
+            Method: get
+    Metadata:
       BuildMethod: esbuild
       BuildProperties:
         Minify: true
