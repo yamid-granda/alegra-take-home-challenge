@@ -6,7 +6,7 @@ export interface ICreateAlegraInvoiceBody {
   items: ICreateAlegraInvoiceItem[]
 }
 
-interface ICreateAlegraInvoiceItem {
+export interface ICreateAlegraInvoiceItem {
   id: number
   price: number
   quantity: number
@@ -14,17 +14,65 @@ interface ICreateAlegraInvoiceItem {
 
 export interface IAlegraInvoice {
   id: string
+  date: string
+  dueDate: string
+  datetime: string
+  observations: string | null
+  anotation: string | null
+  termsConditions: string
+  status: string
   items: IAlegraInvoiceItem[]
+  client: IAlegraInvoiceClient
+  subtotal: number
+  discount: number
+  tax: number
+  total: number
+  totalPaid: number
+  balance: number
+  decimalPrecision: string
+  barCodeContent: string
+  seller: IAlegraInvoiceSeller
 }
 
-interface IAlegraInvoiceItem {
+interface IAlegraInvoiceClient {
+  id: string
+  name: string
+  identification: string
+  phonePrimary: string
+  phoneSecondary: string | null
+  fax: string
+  mobile: string
+  email: string
+  address: IAlegraInvoiceAddress
+  kindOfPerson: string
+  regime: string
+  identificationObject: {
+    type: string | null
+    number: string
+  }
+}
+
+interface IAlegraInvoiceAddress {
+  address: string
+  department: string | null
+  city: string
+}
+
+interface IAlegraInvoiceSeller {
+  id: number
+  name: string
+  identification: string | null
+  observations: string | null
+}
+
+export interface IAlegraInvoiceItem {
+  id: number
+  price: number
+  quantity: number
   name: string
   description: string
-  price: number
   discount: number
   reference: string
-  quantity: number
-  id: number
   productKey: string
   unit: string
   tax: []
