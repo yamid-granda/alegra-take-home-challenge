@@ -10,6 +10,9 @@
     "lint": "eslint **/*.ts",
     "lint:fix": "eslint **/*.ts --fix",
     "storybook": "storybook dev -p 6006",
+    "deploy:production": "pnpm build && pnpm upload:production && pnpm invalidate:cache:production",
+    "upload:production": "aws s3 rm s3://alegra-challenge.redivas.com/ --recursive && aws s3 cp dist s3://alegra-challenge.redivas.com/ --recursive --include \"*\"",
+    "invalidate:cache:production": "aws cloudfront create-invalidation --distribution-id EIOSUVRC99U3C --paths \"/*\"",
     "build-storybook": "storybook build",
     "test": "vitest"
   },
