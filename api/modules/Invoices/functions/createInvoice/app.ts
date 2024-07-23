@@ -1,4 +1,4 @@
-import { BadRequestError, InternalServerError } from 'http-errors-enhanced'
+import { BadRequestError } from 'http-errors-enhanced'
 import type { ICustomAPIGatewayProxyResult } from '@api/types'
 import { functionWrapper } from '@api/utils/functionWrapper'
 import { createInvoiceInAlegra } from '@api/modules/Invoices/services/http/createInvoiceInAlegra'
