@@ -12,6 +12,7 @@ import Invoice from '@ui/modules/Invoices/components/Invoice/Invoice.vue'
 import Loader from '@ui/components/Loader/Loader.vue'
 import Input from '@ui/components/Input/Input.vue'
 import Button from '@ui/components/Button/Button.vue'
+import { getTodayStrDate } from '@ui/utils/getTodayStrDate'
 import SellerGameBoard from '../SellerGameBoard/SellerGameBoard.vue'
 import type { ISellImagesGameData } from './types'
 
@@ -101,12 +102,12 @@ async function onWin() {
     quantity: totalPoints,
   }]
 
-  const strDate = new Date().toISOString()
+  const todayStrDate = getTodayStrDate()
 
   const body: ICreateAlegraInvoiceBody = {
     client: 1,
-    date: strDate,
-    dueDate: strDate,
+    date: todayStrDate,
+    dueDate: todayStrDate,
     seller: winnerSeller.value.id,
     items,
   }
@@ -200,7 +201,7 @@ function resetSellersReady() {
           >
             <SellerGameBoard
               :seller="seller"
-              :image="images[index]"
+              :image="images?.[index]"
               :is-loading="isLoadingImages"
               :is-image-visible="sellersAreReady"
               :points="gameData[seller.id]?.points"
