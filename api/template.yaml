@@ -22,6 +22,11 @@ Parameters:
     Type: String
 
 Globals:
+  Api:
+    Cors:
+      AllowMethods: '''*'''
+      AllowHeaders: '''content-type'''
+      AllowOrigin: '''*'''
   Function:
     Timeout: 12
     Runtime: nodejs20.x

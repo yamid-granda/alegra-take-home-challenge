@@ -2,6 +2,7 @@ import type { ICustomAPIGatewayProxyResult } from '@api/types'
 import type { APIGatewayEvent, APIGatewayProxyResult, Context } from 'aws-lambda'
 import middy from '@middy/core'
 import httpErrorHandler from '@middy/http-error-handler'
+import cors from '@middy/http-cors'
 
 interface IFunctionWrapperConfig {
   handler: IHandler
@@ -25,6 +26,7 @@ export function functionWrapper({ handler: inputHandler }: IFunctionWrapperConfi
 
   const handlerWrapper = middy()
     .use(httpErrorHandler())
+    .use(cors())
     .handler(handler)
 
   return handlerWrapper as (event?: Partial<APIGatewayEvent>, context?: Partial<Context>) => Promise<APIGatewayProxyResult>
