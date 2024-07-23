@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Card from '@ui/components/Card/Card.vue'
 import Loader from '@ui/components/Loader/Loader.vue'
-import { computed, ref, withDefaults } from 'vue'
+import { computed, ref } from 'vue'
 import ProgressBar from '@ui/components/ProgressBar/ProgressBar.vue'
 import type { ISellerGameBoardEvents, ISellerGameBoardProps } from './types'
 
@@ -44,10 +44,9 @@ function onImageLoad() {
       <Loader v-if="isLoading" />
 
       <img
-        v-else-if="image"
         class="ss-seller-game-board__img"
         :src="imageSrc"
-        :alt="image.title"
+        :alt="image?.title"
         @load="onImageLoad"
         @error="onImageError"
       >
