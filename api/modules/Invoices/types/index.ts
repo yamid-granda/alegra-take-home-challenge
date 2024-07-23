@@ -70,10 +70,10 @@ export interface IAlegraInvoiceItem {
   price: number
   quantity: number
   name: string
-  description: string
+  description: string | null
   discount: number
-  reference: string
-  productKey: string
+  reference: string | null
+  productKey: string | null
   unit: string
   tax: []
   total: number
