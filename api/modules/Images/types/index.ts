@@ -1,7 +1,13 @@
 export interface IGoogleImagesQueryResponse {
-  items: IGoogleImagesQueryResponseItem[]
+  items: IGoogleImage[]
 }
 
-interface IGoogleImagesQueryResponseItem {
+export interface IGoogleImage {
   link: string
+  title: string
+  image: IGoogleImageImage
+}
+
+interface IGoogleImageImage {
+  thumbnailLink: string
 }
