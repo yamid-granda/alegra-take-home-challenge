@@ -69,6 +69,7 @@ function onImageLoad() {
   display: flex;
   transition: $transition-base;
   cursor: pointer;
+  height: 100%;
   user-select: none;
 
   &:hover {
