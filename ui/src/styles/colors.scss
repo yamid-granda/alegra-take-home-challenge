@@ -1,14 +1,14 @@
-$c-white: #fff;
-$c-black: #000;
+$c-white: var(--c-white);
+$c-black: var(--c-black);
 
+$c-grey-6: var(--c-grey-6);
+$c-grey-4: var(--c-grey-4);
+$c-grey-2: var(--c-grey-2);
 
-$c-grey-6: #f4f5fb;
-$c-grey-4: #cbd5e1;
-$c-grey-2: #334155;
+$c-primary: var(--c-primary);
+$c-primary-hover: var(--c-primary-hover);
 
-$c-primary: #00b19c;
-$c-primary-hover: #00535e;
-
-$c-text: $c-grey-2;
+$c-text: var(--c-text);
+$c-text-light: var(--c-text-light);
 $c-border: $c-grey-4;
 $c-outline: $c-primary;

@@ -20,7 +20,7 @@ defineProps<IButtonProps>()
 .ss-button {
   background-color: $c-primary;
   min-height: $input-height;
-  color: $c-white;
+  color: #fff;
   border: none;
   padding: $s2 $s4;
   border-radius: $border-radius-base;

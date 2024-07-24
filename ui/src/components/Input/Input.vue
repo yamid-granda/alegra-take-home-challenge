@@ -89,6 +89,10 @@ function onKeydown(event: KeyboardEvent) {
     outline: $border-accessible-outline;
     border-color: $c-primary;
   }
+
+  &::placeholder {
+    color: $c-text-light;
+  }
 }
 
 // modifiers
