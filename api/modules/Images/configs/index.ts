@@ -10,6 +10,7 @@ export const QUERY_IMAGES_API_CONFIG: IApiConfig = {
     searchType: 'image',
     start: 1,
     num: 3,
+    imgSize: 'MEDIUM',
   },
 }
 
