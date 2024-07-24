@@ -17,7 +17,7 @@ import { getFromLocalStorage } from '@ui/clients/localStorage/getFromLocalStorag
 import { deleteFromLocalStorage } from '@ui/clients/localStorage/deleteFromLocalStorage'
 import SellerGameBoard from '../SellerGameBoard/SellerGameBoard.vue'
 import type { ISellImagesGameData } from './types'
-import { GAME_DATA_STORAGE_KEY, GAME_IMAGES_STORAGE_KEY, MAX_POINTS, SEARCH_TEXT_STORAGE_KEY } from './configs'
+import { GAME_DATA_STORAGE_KEY, GAME_IMAGES_STORAGE_KEY, MAX_POINTS, SEARCH_TEXT_STORAGE_KEY, SELLERS_STORAGE_KEY } from './configs'
 
 // data
 const sellers = ref<IAlegraSeller[]>([])
@@ -45,6 +45,15 @@ watch(searchText, (newSearchText) => {
 
 // lifecycle
 async function onCreate() {
+  const storedSellers = getFromLocalStorage<IAlegraSeller[]>({ key: SELLERS_STORAGE_KEY })
+
+  if (storedSellers) {
+    sellers.value = storedSellers
+    getSellers()
+    setupGameInitialData()
+    return
+  }
+
   await getSellers()
   setupGameInitialData()
 }
@@ -129,6 +138,7 @@ async function getSellers() {
     return
 
   sellers.value = response.result
+  saveInLocalStorage({ key: SELLERS_STORAGE_KEY, value: sellers.value })
 }
 
 function setupGameInitialData() {
