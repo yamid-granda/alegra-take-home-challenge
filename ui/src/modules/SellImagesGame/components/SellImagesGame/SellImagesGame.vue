@@ -12,11 +12,12 @@ import Input from '@ui/components/Input/Input.vue'
 import Button from '@ui/components/Button/Button.vue'
 import { getTodayStrDate } from '@ui/utils/getTodayStrDate'
 import Form from '@ui/components/Form/Form.vue'
+import { saveInLocalStorage } from '@ui/clients/localStorage/saveInLocalStorage'
+import { getFromLocalStorage } from '@ui/clients/localStorage/getFromLocalStorage'
+import { deleteFromLocalStorage } from '@ui/clients/localStorage/deleteFromLocalStorage'
 import SellerGameBoard from '../SellerGameBoard/SellerGameBoard.vue'
 import type { ISellImagesGameData } from './types'
-
-// configs
-const maxPoints = 20
+import { GAME_DATA_STORAGE_KEY, GAME_IMAGES_STORAGE_KEY, MAX_POINTS, SEARCH_TEXT_STORAGE_KEY } from './configs'
 
 // data
 const sellers = ref<IAlegraSeller[]>([])
@@ -26,17 +27,20 @@ const isLoadingImages = ref(false)
 const gameData = ref<ISellImagesGameData>({})
 const isRoundReady = ref(false)
 const invoice = ref<IAlegraInvoice>()
-const isSearchDisabled = ref(false)
 
 // computed
 const isReadyToStart = computed<boolean>(() => Boolean(sellers.value.length))
 const sellersAreReady = computed<boolean>(() => Object.values(gameData.value).every(data => data.isReady))
-const winnerSeller = computed<IAlegraSeller | null>(() => sellers.value.find(seller => gameData.value[seller.id]?.points >= maxPoints) || null)
+const winnerSeller = computed<IAlegraSeller | null>(() => sellers.value.find(seller => gameData.value[seller.id]?.points >= MAX_POINTS) || null)
 
 // watchers
 watch(winnerSeller, (hasWinner) => {
   if (hasWinner)
     onWin()
+})
+
+watch(searchText, (newSearchText) => {
+  saveInLocalStorage({ key: SEARCH_TEXT_STORAGE_KEY, value: newSearchText })
 })
 
 // lifecycle
@@ -52,7 +56,6 @@ async function onSearch() {
   if (!searchText.value.trim())
     return
 
-  isSearchDisabled.value = true
   isLoadingImages.value = true
   const response = await queryImagesFromApi({ query: searchText.value })
   isLoadingImages.value = false
@@ -61,6 +64,7 @@ async function onSearch() {
     return
 
   images.value = response.result.items
+  saveInLocalStorage({ key: GAME_IMAGES_STORAGE_KEY, value: images.value })
   isRoundReady.value = true
 }
 
@@ -74,13 +78,17 @@ function onSelectSeller(sellerId: number) {
   gameData.value[sellerId].points += 3
   searchText.value = ''
   resetSellersReady()
-  isSearchDisabled.value = false
+  saveInLocalStorage({ key: GAME_DATA_STORAGE_KEY, value: gameData.value })
+  deleteFromLocalStorage({ key: GAME_IMAGES_STORAGE_KEY })
+  deleteFromLocalStorage({ key: SEARCH_TEXT_STORAGE_KEY })
 }
 
 async function onWin() {
   if (!winnerSeller.value)
     return
 
+  deleteFromLocalStorage({ key: GAME_DATA_STORAGE_KEY })
+  deleteFromLocalStorage({ key: GAME_IMAGES_STORAGE_KEY })
   const totalPoints = Object.values(gameData.value).reduce((acc, data) => acc + data.points, 0)
 
   const items: ICreateAlegraInvoiceItem[] = [{
@@ -124,6 +132,22 @@ async function getSellers() {
 }
 
 function setupGameInitialData() {
+  const storedImages = getFromLocalStorage<IGoogleImage[]>({ key: GAME_IMAGES_STORAGE_KEY })
+  const storedGameData = getFromLocalStorage<ISellImagesGameData>({ key: GAME_DATA_STORAGE_KEY })
+  const storedSearchText = getFromLocalStorage({ key: SEARCH_TEXT_STORAGE_KEY })
+
+  searchText.value = storedSearchText || ''
+
+  if (storedImages) {
+    images.value = storedImages
+    isRoundReady.value = true
+  }
+
+  if (storedGameData) {
+    gameData.value = storedGameData
+    return
+  }
+
   sellers.value.forEach((seller) => {
     gameData.value[seller.id] = {
       points: 0,
@@ -180,10 +204,10 @@ function resetSellersReady() {
             name="search"
             placeholder="Escribe algo para buscar imágenes ..."
             label="Búsqueda de Imágenes"
-            :disabled="isSearchDisabled"
+            :disabled="isRoundReady"
           />
 
-          <Button :disabled="isSearchDisabled">
+          <Button :disabled="isRoundReady">
             Buscar
           </Button>
         </Form>
