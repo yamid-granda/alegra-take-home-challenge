@@ -1,97 +1,94 @@
 <mxfile host="65bd71144e">
     <diagram id="zaJv6jhwb6I8VmOUMsv1" name="Page-1">
-        <mxGraphModel dx="3497" dy="1409" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1845" dy="664" grid="1" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="41" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="34" target="40">
+                <mxCell id="41" value="" style="edgeStyle=none;html=1;" parent="1" source="34" target="40" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="34" value="Query images&lt;br&gt;AWS Lambda" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
-                    <mxGeometry x="275" y="310" width="120" height="150" as="geometry"/>
+                <mxCell id="34" value="Query images&lt;br&gt;AWS Lambda" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.lambda;" parent="1" vertex="1">
+                    <mxGeometry x="46" y="308" width="120" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="46" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="35" target="44">
+                <mxCell id="46" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="35" target="44" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="529" y="175"/>
+                            <mxPoint x="300" y="173"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="35" value="Get Allegra Users&lt;br&gt;AWS Lambda" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
-                    <mxGeometry x="469" y="310" width="120" height="150" as="geometry"/>
+                <mxCell id="35" value="Get Alegra Users&lt;br&gt;AWS Lambda" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.lambda;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="308" width="120" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="47" style="edgeStyle=none;html=1;entryX=0.563;entryY=0.994;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="36" target="44">
+                <mxCell id="47" style="edgeStyle=none;html=1;entryX=0.563;entryY=0.994;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="36" target="44" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="36" value="Create Alegra Invoice&lt;br&gt;AWS Lambda" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
-                    <mxGeometry x="620" y="310" width="120" height="150" as="geometry"/>
+                <mxCell id="36" value="Create Alegra Invoice&lt;br&gt;AWS Lambda" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.lambda;" parent="1" vertex="1">
+                    <mxGeometry x="391" y="308" width="120" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="48" style="edgeStyle=none;html=1;" edge="1" parent="1" source="37" target="35">
+                <mxCell id="48" style="edgeStyle=none;html=1;" parent="1" source="37" target="35" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="49" style="edgeStyle=none;html=1;" edge="1" parent="1" source="37" target="36">
+                <mxCell id="49" style="edgeStyle=none;html=1;" parent="1" source="37" target="36" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="680" y="695"/>
+                            <mxPoint x="451" y="693"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="50" style="edgeStyle=none;html=1;" edge="1" parent="1" source="37" target="34">
+                <mxCell id="50" style="edgeStyle=none;html=1;" parent="1" source="37" target="34" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="330" y="695"/>
+                            <mxPoint x="101" y="693"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="37" value="Amazon API Gateway" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.api_gateway;" vertex="1" parent="1">
-                    <mxGeometry x="450" y="609" width="150" height="170" as="geometry"/>
+                <mxCell id="37" value="Amazon API Gateway" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.api_gateway;" parent="1" vertex="1">
+                    <mxGeometry x="221" y="607" width="150" height="170" as="geometry"/>
                 </mxCell>
-                <mxCell id="40" value="&amp;nbsp; &amp;nbsp; &amp;nbsp;Google Search API" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="220" y="120" width="230" height="110" as="geometry"/>
+                <mxCell id="40" value="&amp;nbsp; &amp;nbsp; &amp;nbsp;Google Search API" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-9" y="118" width="230" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="38" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png;" vertex="1" parent="1">
-                    <mxGeometry x="240" y="157.5" width="35" height="35" as="geometry"/>
+                <mxCell id="38" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png;" parent="1" vertex="1">
+                    <mxGeometry x="11" y="155.5" width="35" height="35" as="geometry"/>
                 </mxCell>
-                <mxCell id="44" value="Alegra API&lt;br&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="550" y="120" width="230" height="110" as="geometry"/>
+                <mxCell id="44" value="Alegra API&lt;br&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="321" y="118" width="230" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="43" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/9/98/Logo_de_Alegra.png;" vertex="1" parent="1">
-                    <mxGeometry x="580.9" y="190" width="78.2" height="20" as="geometry"/>
+                <mxCell id="43" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/9/98/Logo_de_Alegra.png;" parent="1" vertex="1">
+                    <mxGeometry x="351.9" y="188" width="78.2" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="62" style="edgeStyle=none;html=1;" edge="1" parent="1" source="60" target="37">
+                <mxCell id="62" style="edgeStyle=none;html=1;" parent="1" source="60" target="37" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="520" y="940"/>
+                            <mxPoint x="291" y="938"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="68" style="edgeStyle=none;html=1;" edge="1" parent="1" source="60" target="65">
+                <mxCell id="68" style="edgeStyle=none;html=1;" parent="1" source="60" target="65" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="-125" y="939"/>
+                            <mxPoint x="-354" y="937"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="60" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.svgrepo.com/show/354528/vue.svg;" vertex="1" parent="1">
-                    <mxGeometry x="140" y="849" width="180" height="180" as="geometry"/>
+                <mxCell id="60" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.svgrepo.com/show/354528/vue.svg;" parent="1" vertex="1">
+                    <mxGeometry x="-89" y="847" width="180" height="180" as="geometry"/>
                 </mxCell>
-                <mxCell id="61" value="Amazon S3" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
-                    <mxGeometry x="-186" y="420" width="120" height="140" as="geometry"/>
+                <mxCell id="61" value="Amazon S3" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.s3;" parent="1" vertex="1">
+                    <mxGeometry x="-415" y="418" width="120" height="140" as="geometry"/>
                 </mxCell>
-                <mxCell id="66" style="edgeStyle=none;html=1;" edge="1" parent="1" source="65" target="61">
+                <mxCell id="66" style="edgeStyle=none;html=1;" parent="1" source="65" target="61" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="65" value="Amazon Cloudfront" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.cloudfront;" vertex="1" parent="1">
-                    <mxGeometry x="-190" y="680" width="130" height="150" as="geometry"/>
+                <mxCell id="65" value="Amazon Cloudfront" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.cloudfront;" parent="1" vertex="1">
+                    <mxGeometry x="-419" y="678" width="130" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="69" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
-                    <mxGeometry x="480" y="680" width="30" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="71" style="edgeStyle=none;html=1;" edge="1" parent="1" source="70" target="60">
+                <mxCell id="71" style="edgeStyle=none;html=1;" parent="1" source="70" target="60" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="70" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
-                    <mxGeometry x="200" y="1180" width="60" height="110" as="geometry"/>
+                <mxCell id="70" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="-29" y="1178" width="60" height="110" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
