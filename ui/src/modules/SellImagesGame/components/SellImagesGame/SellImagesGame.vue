@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { debounce } from 'lodash'
-import { INPUT_DEBOUNCE_MS } from '@ui/configs'
 import { queryImagesFromApi } from '@ui/modules/SellImagesGame/services/http/queryImagesFromApi'
 import type { IGoogleImage } from '@api/modules/Images/types'
 import { getGameSellers } from '@ui/modules/SellImagesGame/services/http/getGameSellers'
@@ -13,6 +11,7 @@ import Loader from '@ui/components/Loader/Loader.vue'
 import Input from '@ui/components/Input/Input.vue'
 import Button from '@ui/components/Button/Button.vue'
 import { getTodayStrDate } from '@ui/utils/getTodayStrDate'
+import Form from '@ui/components/Form/Form.vue'
 import SellerGameBoard from '../SellerGameBoard/SellerGameBoard.vue'
 import type { ISellImagesGameData } from './types'
 
@@ -25,9 +24,9 @@ const searchText = ref('')
 const images = ref<IGoogleImage[]>([])
 const isLoadingImages = ref(false)
 const gameData = ref<ISellImagesGameData>({})
-const abortController = ref(new AbortController())
 const isRoundReady = ref(false)
 const invoice = ref<IAlegraInvoice>()
+const isSearchDisabled = ref(false)
 
 // computed
 const isReadyToStart = computed<boolean>(() => Boolean(sellers.value.length))
@@ -35,8 +34,6 @@ const sellersAreReady = computed<boolean>(() => Object.values(gameData.value).ev
 const winnerSeller = computed<IAlegraSeller | null>(() => sellers.value.find(seller => gameData.value[seller.id]?.points >= maxPoints) || null)
 
 // watchers
-watch(searchText, onInputSearch)
-
 watch(winnerSeller, (hasWinner) => {
   if (hasWinner)
     onWin()
@@ -51,33 +48,20 @@ async function onCreate() {
 onCreate()
 
 // events
-const onSearch = debounce(async () => {
-  if (!searchText.value)
+async function onSearch() {
+  if (!searchText.value.trim())
     return
 
+  isSearchDisabled.value = true
   isLoadingImages.value = true
-
-  const response = await queryImagesFromApi({
-    query: searchText.value,
-    signal: abortController.value.signal,
-  })
-
+  const response = await queryImagesFromApi({ query: searchText.value })
   isLoadingImages.value = false
-  abortController.value = new AbortController()
 
   if (!response.isOk)
     return
 
   images.value = response.result.items
   isRoundReady.value = true
-}, INPUT_DEBOUNCE_MS)
-
-function onInputSearch() {
-  if (isLoadingImages.value)
-    abortController.value.abort()
-
-  resetSellersReady()
-  onSearch()
 }
 
 function onSellerReady(sellerId: number) {
@@ -85,9 +69,12 @@ function onSellerReady(sellerId: number) {
 }
 
 function onSelectSeller(sellerId: number) {
+  images.value = []
   isRoundReady.value = false
   gameData.value[sellerId].points += 3
   searchText.value = ''
+  resetSellersReady()
+  isSearchDisabled.value = false
 }
 
 async function onWin() {
@@ -122,7 +109,8 @@ async function onWin() {
 
 function onPlayAgain() {
   setupGameInitialData()
-  isRoundReady.value = true
+  isRoundReady.value = false
+  invoice.value = undefined
 }
 
 // methods
@@ -173,24 +161,32 @@ function resetSellersReady() {
         </template>
       </template>
 
-      <div>
+      <div v-else>
         <h2>Instrucciones:</h2>
 
         <ol>
-          <li>Utiliza el campo de texto para buscar una imagen.</li>
+          <li>Ingresa una palabra en el campo de texto.</li>
+          <li>Presiona el botón buscar.</li>
           <li>Selecciona la imagen del vendedor que más te guste (de esta forma cada vendedor ganará puntos).</li>
-          <li>Gana el vendedor que más primero logre 20 puntos, tú eres el jurado.</li>
+          <li>Gana el vendedor que más primero logre 20 puntos, vamos, tú eres el jurado.</li>
         </ol>
 
-        <div class="ss-sell-image-game__search">
+        <Form
+          class="ss-sell-image-game__search"
+          @submit="onSearch"
+        >
           <Input
             v-model="searchText"
             name="search"
             placeholder="Escribe algo para buscar imágenes ..."
             label="Búsqueda de Imágenes"
-            :disabled="sellersAreReady"
+            :disabled="isSearchDisabled"
           />
-        </div>
+
+          <Button :disabled="isSearchDisabled">
+            Buscar
+          </Button>
+        </Form>
 
         <div class="ss-sell-image-game__sellers">
           <div
@@ -219,6 +215,9 @@ function resetSellersReady() {
 <style lang="scss">
 .ss-sell-image-game__search {
   margin-bottom: $s4;
+  display: flex;
+  gap: $s4;
+  align-items: flex-end;
 }
 
 .ss-sell-image-game__sellers {

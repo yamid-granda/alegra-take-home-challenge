@@ -25,16 +25,24 @@ describe('sell images game', () => {
     render(SellImagesGame)
     const searchText = 'new image text search'
     const searchInput = await screen.findByLabelText('Búsqueda de Imágenes')
+    const searchButton = await screen.findByRole('button', { name: 'Buscar' })
 
     // WHEN
-    for (let points = 3; points <= 21; points += 3) {
+    await userEvent.type(searchInput, searchText)
+    await userEvent.click(searchButton)
+
+    const images = await screen.findAllByRole('img')
+    await userEvent.click(images[0])
+
+    for (let points = 3; points < 20; points += 3) {
+      const pointsCounter = await screen.findByText(`${points} puntos`)
+      expect(pointsCounter).toBeInTheDocument()
+
       await userEvent.type(searchInput, searchText)
+      await userEvent.click(searchButton)
 
       const images = await screen.findAllByRole('img')
       await userEvent.click(images[0])
-
-      const pointsCounter = await screen.findByText(`${points} puntos`)
-      expect(pointsCounter).toBeInTheDocument()
     }
 
     const winnerText = await screen.findByText('Felicidades, ', { exact: false })
@@ -70,11 +78,14 @@ describe('sell images game', () => {
     mockHttpGet(GET_GAME_SELLERS_API_CONFIG.url, ALLEGRA_SELLERS_RESPONSE)
     mockHttpGet(`begin:${QUERY_IMAGES_API_CONFIG.url}`, GOOGLE_IMAGES_RESPONSE)
     render(SellImagesGame)
+
     const searchInput = await screen.findByLabelText('Búsqueda de Imágenes')
     const searchText = 'new image text search'
+    const searchButton = await screen.findByRole('button', { name: 'Buscar' })
 
     for (let imgIndex = 0; imgIndex < 3; imgIndex += 1) {
       await userEvent.type(searchInput, searchText)
+      await userEvent.click(searchButton)
 
       // WHEN
       const images = await screen.findAllByRole('img')

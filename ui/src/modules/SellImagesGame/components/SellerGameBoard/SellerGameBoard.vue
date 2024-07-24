@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Card from '@ui/components/Card/Card.vue'
 import Loader from '@ui/components/Loader/Loader.vue'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import ProgressBar from '@ui/components/ProgressBar/ProgressBar.vue'
 import type { ISellerGameBoardEvents, ISellerGameBoardProps } from './types'
 
@@ -21,6 +21,11 @@ const imageSrc = computed<string>(() => {
     return props.image.image.thumbnailLink
 
   return props.image.link
+})
+
+// watchers
+watch(() => props.image, () => {
+  hasImageError.value = false
 })
 
 // events
@@ -93,7 +98,6 @@ function onImageLoad() {
   width: 100%;
   border-radius: $border-radius-base;
   opacity: 0;
-  transition: $transition-base;
 }
 
 .ss-seller-game-board__data {
