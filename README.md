@@ -1,6 +1,12 @@
 # Yamid Granda - Alegra Take Home Challenge
 
-Check the 👉👉👉 DEMO Video Here 👈👈👈
+👉👉👉 [Product DEMO VIDEO Here](https://drive.google.com/file/d/1keqfZY5lHRkHXxz1FZ2jA2DSIgiKQPlN/view?usp=sharing) 👈👈👈
+
+👉👉👉 [Solution Architecture DEMO VIDEO Here](https://drive.google.com/file/d/19BJ8qoqTffSpYExPBZhbu0Cim80Vzmxe/view?usp=sharing) 👈👈👈
+
+👉👉👉 [Folders Structure DEMO VIDEO Here](https://drive.google.com/file/d/1AFDSqTBQNL7R_U66XCIRWZjEOWiJsgsi/view?usp=sharing) 👈👈👈
+
+👉👉👉 [Unit Test DEMO VIDEO Here](https://drive.google.com/file/d/1rrQQhFV_SoeHl4jMCl2vsBUhp019k_kF/view?usp=sharing) 👈👈👈
 
 ![Architecture Diagram](https://lh3.googleusercontent.com/drive-viewer/AKGpihZf3lPZVRjxT8PPpsbQuFLfR9ai6zbEaeXpznmgN_okhdJmsXPzA3UWebkdBn8bS0pbSxpks7QcFDn6eXhHV_eQaNOAJ4jlwxY=w3456-h1996-rw-v1 "Architecture Diagram")
 
