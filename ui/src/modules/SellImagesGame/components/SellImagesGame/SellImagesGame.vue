@@ -12,12 +12,20 @@ import Input from '@ui/components/Input/Input.vue'
 import Button from '@ui/components/Button/Button.vue'
 import { getTodayStrDate } from '@ui/utils/getTodayStrDate'
 import Form from '@ui/components/Form/Form.vue'
-import { saveInLocalStorage } from '@ui/clients/localStorage/saveInLocalStorage'
-import { getFromLocalStorage } from '@ui/clients/localStorage/getFromLocalStorage'
-import { deleteFromLocalStorage } from '@ui/clients/localStorage/deleteFromLocalStorage'
 import SellerGameBoard from '../SellerGameBoard/SellerGameBoard.vue'
+import { MAX_POINTS } from '../../configs'
+import { saveSearchTextInLocalStorage } from '../../services/localStorage/saveSearchTextInLocalStorage'
+import { getSellersFromLocalStorage } from '../../services/localStorage/getSellersFromLocalStorage'
+import { saveImagesInLocalStorage } from '../../services/localStorage/saveImagesInLocalStorage'
+import { saveGameDataInLocalStorage } from '../../services/localStorage/saveGameDataInLocalStorage'
+import { deleteGameImagesFromLocalStorage } from '../../services/localStorage/deleteGameImagesFromLocalStorage'
+import { deleteSearchTextFromLocalStorage } from '../../services/localStorage/deleteSearchTextFromLocalStorage'
+import { deleteGameDataFromLocalStorage } from '../../services/localStorage/deleteGameDataFromLocalStorage'
+import { saveSellersInLocalStorage } from '../../services/localStorage/saveSellersInLocalStorage'
+import { getImagesFromLocalStorage } from '../../services/localStorage/getImagesFromLocalStorage'
+import { getGameDataFromLocalStorage } from '../../services/localStorage/getGameDataFromLocalStorage'
+import { getSearchTextFromLocalStorage } from '../../services/localStorage/getSearchTextFromLocalStorage'
 import type { ISellImagesGameData } from './types'
-import { GAME_DATA_STORAGE_KEY, GAME_IMAGES_STORAGE_KEY, MAX_POINTS, SEARCH_TEXT_STORAGE_KEY, SELLERS_STORAGE_KEY } from './configs'
 
 // data
 const sellers = ref<IAlegraSeller[]>([])
@@ -40,12 +48,12 @@ watch(winnerSeller, (hasWinner) => {
 })
 
 watch(searchText, (newSearchText) => {
-  saveInLocalStorage({ key: SEARCH_TEXT_STORAGE_KEY, value: newSearchText })
+  saveSearchTextInLocalStorage(newSearchText)
 })
 
 // lifecycle
 async function onCreate() {
-  const storedSellers = getFromLocalStorage<IAlegraSeller[]>({ key: SELLERS_STORAGE_KEY })
+  const storedSellers = getSellersFromLocalStorage()
 
   if (storedSellers) {
     sellers.value = storedSellers
@@ -73,7 +81,7 @@ async function onSearch() {
     return
 
   images.value = response.result.items
-  saveInLocalStorage({ key: GAME_IMAGES_STORAGE_KEY, value: images.value })
+  saveImagesInLocalStorage(images.value)
   isRoundReady.value = true
 }
 
@@ -87,17 +95,18 @@ function onSelectSeller(sellerId: number) {
   gameData.value[sellerId].points += 3
   searchText.value = ''
   resetSellersReady()
-  saveInLocalStorage({ key: GAME_DATA_STORAGE_KEY, value: gameData.value })
-  deleteFromLocalStorage({ key: GAME_IMAGES_STORAGE_KEY })
-  deleteFromLocalStorage({ key: SEARCH_TEXT_STORAGE_KEY })
+  saveGameDataInLocalStorage(gameData.value)
+  deleteGameImagesFromLocalStorage()
+  deleteSearchTextFromLocalStorage()
 }
 
 async function onWin() {
   if (!winnerSeller.value)
     return
 
-  deleteFromLocalStorage({ key: GAME_DATA_STORAGE_KEY })
-  deleteFromLocalStorage({ key: GAME_IMAGES_STORAGE_KEY })
+  deleteGameDataFromLocalStorage()
+  deleteGameImagesFromLocalStorage()
+
   const totalPoints = Object.values(gameData.value).reduce((acc, data) => acc + data.points, 0)
 
   const items: ICreateAlegraInvoiceItem[] = [{
@@ -138,13 +147,13 @@ async function getSellers() {
     return
 
   sellers.value = response.result
-  saveInLocalStorage({ key: SELLERS_STORAGE_KEY, value: sellers.value })
+  saveSellersInLocalStorage(sellers.value)
 }
 
 function setupGameInitialData() {
-  const storedImages = getFromLocalStorage<IGoogleImage[]>({ key: GAME_IMAGES_STORAGE_KEY })
-  const storedGameData = getFromLocalStorage<ISellImagesGameData>({ key: GAME_DATA_STORAGE_KEY })
-  const storedSearchText = getFromLocalStorage({ key: SEARCH_TEXT_STORAGE_KEY })
+  const storedImages = getImagesFromLocalStorage()
+  const storedGameData = getGameDataFromLocalStorage()
+  const storedSearchText = getSearchTextFromLocalStorage()
 
   searchText.value = storedSearchText || ''
 
